@@ -19,7 +19,7 @@ public class EjemploClienteSocketStream {
             Socket clienteSocket = new Socket();
             System.out.println("Estableciendo la conexi�n");
 
-            InetSocketAddress addr = new InetSocketAddress("10.0.160.113", 5555);
+            InetSocketAddress addr = new InetSocketAddress("localhost", 5555);
             clienteSocket.connect(addr);
 
             InputStream is = clienteSocket.getInputStream();
@@ -27,13 +27,26 @@ public class EjemploClienteSocketStream {
 
             System.out.println("Enviando mensaje");
 
-            String mensaje = "mensaje desde el cliente Omar.........................T";
-            os.write(mensaje.getBytes());
-
+            String mensaje = "mensaje desde Omar";
+            byte[] mens=new byte[30];
+            byte[] bytesMensaje=mensaje.getBytes();
+            for(int i=0;i<mensaje.getBytes().length;i++){
+                mens[i]=bytesMensaje[i];
+            }           
+            
+            os.write(mens);
+            
             System.out.println("Mensaje enviado");
             
-            String mensaje2="Soy otro mensaje";
-            os.write(mensaje2.getBytes());
+            String mensaje2="Parvo";
+            
+            mens=new byte[30];
+            bytesMensaje=mensaje2.getBytes();
+            for(int i=0;i<mensaje2.getBytes().length;i++){
+                mens[i]=bytesMensaje[i];
+            }
+            
+            os.write(mens);
 
             System.out.println("Cerrando el socket cliente");
 
